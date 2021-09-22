@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import './Auth.module.css';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/index';
+import { Link } from 'react-router-dom';
 
 const Auth = (props) => {
 
@@ -30,6 +31,7 @@ const Auth = (props) => {
                     </div>
                     <button>Login</button>
                 </form>
+                <Link to="/registration">Sign Up</Link>
             </section>
         </main>
     );

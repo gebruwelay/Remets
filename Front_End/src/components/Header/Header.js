@@ -6,6 +6,7 @@ import { Link, Redirect } from 'react-router-dom';
 import 'react-router';
 
 const Header = (props) => {
+
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated); // put the name of the slice
     const username = useSelector(state => state.auth.user);
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Header = (props) => {
             {isAuthenticated && (<nav>
                 <ul>
                     <li>
-                        <Link to="/newpost">New Post</Link>
+                        <Link to="/newproduct">New Product</Link>
                     </li>
                     <li>
                         <Link to="/posts"> Posts</Link>
@@ -45,6 +46,6 @@ const Header = (props) => {
 
         </header>
     );
-};
+}
 
 export default Header;
