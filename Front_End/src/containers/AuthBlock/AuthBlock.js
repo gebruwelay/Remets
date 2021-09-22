@@ -6,32 +6,23 @@ import { LikedProducts } from '../../store/LikedPosts';
 const AuthBlock = () => {
     // let isAuthorizred=false;
 
-<<<<<<< HEAD
+
     //     function a(){
     // // locql stor
     //     }
     // {(isAuthorizred)} 
-    const [likedPosts, setLikedPosts] = useState([]);
-=======
-//     function a(){
-// // locql stor
-//     }
-// {(isAuthorizred)} 
-const [likedProducts, setLikedProducts] = useState([]);
->>>>>>> 918dc3196371541d611232fbb0590194fd43f8f7
+    const [likedProducts, setLikedProducts] = useState([]);
+
 
     return (
         <Fragment>
             <Header />
-<<<<<<< HEAD
-            <LikedPosts.Provider value={{ likedPosts, setLikedPosts }}>
+
+
+            <LikedProducts.Provider value={{ likedProducts, setLikedProducts }}>
                 <Routes />
-            </LikedPosts.Provider>
-=======
-        <LikedProducts.Provider value={{ likedProducts, setLikedProducts }}>
-           <Routes/>
-           </LikedProducts.Provider>
->>>>>>> 918dc3196371541d611232fbb0590194fd43f8f7
+            </LikedProducts.Provider>
+
         </Fragment>
     );
 }
