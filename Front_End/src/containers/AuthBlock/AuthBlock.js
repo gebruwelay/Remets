@@ -1,8 +1,7 @@
 import React, { Fragment,useState} from 'react'
 import Header from '../../components/Header/Header';
 import Routes from '../../components/Route/Route';
-import { LikedPosts } from '../../store/LikedPosts';
-
+import { LikedProducts } from '../../store/LikedPosts';
 
 const AuthBlock = () => {
 // let isAuthorizred=false;
@@ -11,14 +10,14 @@ const AuthBlock = () => {
 // // locql stor
 //     }
 // {(isAuthorizred)} 
-const [likedPosts, setLikedPosts] = useState([]);
+const [likedProducts, setLikedProducts] = useState([]);
 
     return (
         <Fragment>
             <Header />
-        <LikedPosts.Provider value={{ likedPosts, setLikedPosts }}>
+        <LikedProducts.Provider value={{ likedProducts, setLikedProducts }}>
            <Routes/>
-           </LikedPosts.Provider>
+           </LikedProducts.Provider>
         </Fragment>
     );
 }

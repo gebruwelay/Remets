@@ -1,15 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import './FullPost.css';
-import { APIConfig } from '../../store/API-Config';
-import { LikedPosts } from '../../store/LikedPosts';
 import Cookies from 'js-cookie';
+import { LikedProducts } from '../../store/LikedPosts';
 
 const FullPost = (props) => {
 
-    const APIs = useContext(APIConfig);
-    const postAPI = APIs.postAPI;
-    const { likedPosts, setLikedPosts } = useContext(LikedPosts);
+    const { likedProducts, setLikedProducts} = useContext(LikedProducts);
 
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -17,7 +14,7 @@ const FullPost = (props) => {
         'Authorization':`Bearer ${Cookies.get('user')}`
     }
 
-    const [postCall, setPostCall] = useState({});
+    const [productCall, setProductCall] = useState({});
     const [renderedId, setRenderedId] = useState(null); // remove this one
 
     useEffect(() => {
@@ -25,13 +22,13 @@ const FullPost = (props) => {
     }, []);
 
     useEffect(() => {
-        if (renderedId !== props.match.params.id) {
-            axios("/posts/" + props.match.params.id, { headers })
-                .then(response => {
-                    setPostCall(response.data);
-                    setRenderedId(props.match.params.id);
-                })
-        }
+        // if (renderedId !== props.match.params.id) {
+        //     axios("/products/" + props.match.params.id, { headers })
+        //         .then(response => {
+                 //   setPostCall(response.data);
+                //     setRenderedId(props.match.params.id);
+                // })
+       // }
         // return () =>{
         //     console.log('post was unmounted')
         // };
@@ -39,26 +36,42 @@ const FullPost = (props) => {
 
 
 
-    const deletePost = () => {
-        axios.delete("/posts" + "/"+props.match.params.id, { headers })
-            .then(response => {
+    const deleteProduct = () => {
+    //     axios.delete("/posts" + "/"+props.match.params.id, { headers })
+    //         .then(response => {
                    // let index = likedPosts.indexOf(parseInt(props.match.params.id))
-                   let result = likedPosts.filter(post=>post.id!=parseInt(props.match.params.id));
-                   setLikedPosts(result);
+                   let result = likedProducts.filter(product=>product.id!=parseInt(props.match.params.id));
+                   setLikedProducts(result);
                    // delete likedPosts[index]
-                props.history.push('/posts');
-            });
+            //     props.history.push('/posts');
+            // });
     };
 
+     const editProduct = () => {
+         //axios.patch() 
+     }
+     const changeStatus = () =>{
+         //axios.patch()
+     }
 
     let post = <p style={{ justifyContent: 'space-around' }}> Please select a Post!</p>;
     if (props.match.params.id != null) {
         post = (
             <div className="FullPost">
-                <h1>{postCall.title}</h1>
-                <p>{postCall.content}</p>
+                <h1>{productCall.name}</h1>
+                <p>{productCall.price}</p>
+                <p>{productCall.quantity}</p>
+                <p>{productCall.category}</p>
+
                 <div className="Edit">
-                    <button onClick={deletePost} className="Delete">Delete</button>
+                    <button onClick={deleteProduct} className="Delete">Delete</button>
+                    <button onClick={editProduct} className="edit">Edit</button>
+                   <label> Change Status </label>
+                    <select onChange= {changeStatus}>
+                        <option> Shipped</option>
+                        <option> On Way</option>
+                        <option> Delivered </option>
+                    </select>
                 </div>
             </div>
         );

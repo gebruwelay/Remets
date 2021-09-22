@@ -23,7 +23,7 @@ const Header = (props) => {
       {isAuthenticated && (<nav>
         <ul>
           <li>
-            <Link to="/newpost">New Post</Link>
+            <Link to="/newproduct">New Product</Link>
           </li>
           <li>
             <Link to="/posts"> Posts</Link>
