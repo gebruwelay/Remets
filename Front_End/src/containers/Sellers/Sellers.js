@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Admin from '../Admin/Admin';
-import Seller from '../Seller/Seller';
+
+import Seller from '../../components/Seller/Seller';
 
 import './Sellers.css';
 

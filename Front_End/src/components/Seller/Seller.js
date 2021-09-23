@@ -1,5 +1,4 @@
 import React from "react";
-import Sellers from "../Sellers/Sellers";
 
 import './Seller.css';
 

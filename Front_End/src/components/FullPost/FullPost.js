@@ -6,12 +6,12 @@ import { LikedProducts } from '../../store/LikedPosts';
 
 const FullPost = (props) => {
 
-    const { likedProducts, setLikedProducts} = useContext(LikedProducts);
+    const { likedProducts, setLikedProducts } = useContext(LikedProducts);
 
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
-        'Authorization':`Bearer ${Cookies.get('user')}`
+        'Authorization': `Bearer ${Cookies.get('user')}`
     }
 
     const [productCall, setProductCall] = useState({});
@@ -25,10 +25,10 @@ const FullPost = (props) => {
         // if (renderedId !== props.match.params.id) {
         //     axios("/products/" + props.match.params.id, { headers })
         //         .then(response => {
-                 //   setPostCall(response.data);
-                //     setRenderedId(props.match.params.id);
-                // })
-       // }
+        //   setPostCall(response.data);
+        //     setRenderedId(props.match.params.id);
+        // })
+        // }
         // return () =>{
         //     console.log('post was unmounted')
         // };
@@ -37,22 +37,22 @@ const FullPost = (props) => {
 
 
     const deleteProduct = () => {
-    //     axios.delete("/posts" + "/"+props.match.params.id, { headers })
-    //         .then(response => {
-                   // let index = likedPosts.indexOf(parseInt(props.match.params.id))
-                   let result = likedProducts.filter(product=>product.id!=parseInt(props.match.params.id));
-                   setLikedProducts(result);
-                   // delete likedPosts[index]
-            //     props.history.push('/posts');
-            // });
+        //     axios.delete("/posts" + "/"+props.match.params.id, { headers })
+        //         .then(response => {
+        // let index = likedPosts.indexOf(parseInt(props.match.params.id))
+        let result = likedProducts.filter(product => product.id != parseInt(props.match.params.id));
+        setLikedProducts(result);
+        // delete likedPosts[index]
+        //     props.history.push('/posts');
+        // });
     };
 
-     const editProduct = () => {
-         //axios.patch() 
-     }
-     const changeStatus = () =>{
-         //axios.patch()
-     }
+    const editProduct = () => {
+        //axios.patch() 
+    }
+    const changeStatus = () => {
+        //axios.patch()
+    }
 
     let post = <p style={{ justifyContent: 'space-around' }}> Please select a Post!</p>;
     if (props.match.params.id != null) {
@@ -66,8 +66,8 @@ const FullPost = (props) => {
                 <div className="Edit">
                     <button onClick={deleteProduct} className="Delete">Delete</button>
                     <button onClick={editProduct} className="edit">Edit</button>
-                   <label> Change Status </label>
-                    <select onChange= {changeStatus}>
+                    <label> Change Status </label>
+                    <select onChange={changeStatus}>
                         <option> Shipped</option>
                         <option> On Way</option>
                         <option> Delivered </option>
