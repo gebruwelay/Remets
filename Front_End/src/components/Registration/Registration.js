@@ -41,7 +41,7 @@ const Registration = (props) => {
         let paths = [
             { path: "/Products", role: "seller" },
             { path: "/admin", role: "admin" },
-            { path: "/buyer", role: "buyer" }
+            { path: "/buyerproducts", role: "buyer" }
         ]
         let redirect = paths.find(item => item.role == data.role)
         props.history.push(redirect.path);

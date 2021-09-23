@@ -16,7 +16,7 @@ import { LikedPosts } from '../../store/LikedPosts';
 
 const Carts = (props) => {
 
-
+    const { likedPosts, setLikedPost } = useContext(LikedPosts);
 
     const cartList = [
         {
@@ -53,6 +53,12 @@ const Carts = (props) => {
         }
 
     ];
+    useEffect(() => {
+        cartList.map(cart => {
+            setLikedPosts([...likedPosts, { "id": props.id, "name": props.name, "price": props.price, "quantity": props.quantity }])
+        });
+    }, []);
+
 
     const rposts = cartList.map(cart => {
         // return <Link to={props.match.url + '/' + cart.id} key={cart.id}>
@@ -83,5 +89,6 @@ const Carts = (props) => {
         </div>
     );
 }
+
 
 export default Carts;

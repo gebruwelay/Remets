@@ -1,6 +1,9 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom'
+
 
 // total
 const totalIni = { total: 0 }
@@ -11,11 +14,16 @@ const totalSlice = createSlice(
         reducers: {
             increment(state, action) {
                 state.total = state.total + action.payload;
+
             }
         }
 
     }
+
 )
+
+
+
 // Counter
 const initialCounterState = { counter: 0, showCounter: true };
 
@@ -49,25 +57,33 @@ const authSlice = createSlice(
         initialState: initialAuthState,
         reducers: {
             login(state, action) {
+
+
+
                 const userCred = action.payload;
                 state.user = userCred.username
                 axios.post('http://localhost:8080/authenticate', userCred)
                     .then(response => {
                         Cookies.set('user', response.data.jwt)
 
+                        Cookies.set('role', "seller")
+
                         axios.defaults.headers.common = {
                             'Authorization': 'Bearer ' + response.data.jwt
                         };
+
                     })
                     .catch(err => console.log(err.message))
 
                 if (Cookies.get('user') != null) {
                     state.isAuthenticated = true
+                    console.log(state.isAuthenticated);
                 }
 
             },
             logout(state) {
                 Cookies.remove('user')
+                Cookies.remove('role')
                 axios.defaults.headers.common = {
                     'Authorization': ''
                 };
