@@ -3,10 +3,10 @@ import React, { useContext, useMemo, useRef, useState } from 'react';
 import { APIConfig } from '../../store/API-Config';
 import Cookies from 'js-cookie';
 
-import './AddProduct.css';
+import './EditProduct.css';
 import { Redirect } from 'react-router';
 
-const AddProduct = (props) => {
+const EditProduct = (props) => {
 
     const newPostForm = useRef();
 
@@ -27,9 +27,9 @@ const AddProduct = (props) => {
             price: form['price'].value,
             quantity: form['qty'].value,
             category: form['category'].value,
-            status: form['status'].value
         };
-
+        
+        
        
 
         // axios.post("/products", data, { headers: headers })
@@ -48,18 +48,18 @@ const AddProduct = (props) => {
             <form ref={newPostForm}>
                 <h1>Add Product</h1>
                 <label>Product Name</label>
-                <input type="text" name={'name'} />
+                <input type="text" name={'name'} value ={props.location.state.name} />
 
                 <label>Price</label>
-                <input type="number" name={'price'} />
+                <input type="number" name={'price'} value ={ props.location.state.price} />
 
                 <label>Quantity</label>
-                <input type="number" name={'qty'} required />
+                <input type="number" name={'qty'}  value = { props.location.state.price} required  />
 
                 <label>Category</label>
-                <input type="text" name={'category'} required />
+                <input type="text" name={'category'} value = {props.location.state.category} required />
             </form>
-            <button onClick={PostDataHandler}> Add Product </button>
+            <button onClick={PostDataHandler}> Edit Product </button>
 
 
 
@@ -68,4 +68,4 @@ const AddProduct = (props) => {
     );
 }
 // if i didnt use a form, you will get a Chrome sendrequest error: TypeError: Converting circular structure to JSON
-export default AddProduct;
+export default EditProduct;

@@ -1,0 +1,39 @@
+.Buyer {
+    width: 250px;
+    height: 280px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    margin: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.Buyer:hover,
+.Buyer:active {
+    background-color: #C0DDF5;
+}
+
+.price, .quantity,.status {
+    margin: 16px 0;
+    color:black;
+    text-decoration: unset;
+}
+
+.Buyer button {
+    margin: 1rem auto;
+    font-size: 1rem;
+    background-color: #ffbb00;
+    border: 1px solid #ffbb00;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    color: #2c2922;
+  }
+  
+  .Buyer button:hover,
+  .Buyer button:active {
+    background-color: #ffa600;
+    border-color: #ffa600;
+  }
+
+  

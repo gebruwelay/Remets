@@ -25,7 +25,7 @@ const UserProfile = (props) => {
       <main className="profile">
         {isAuthenticated ? null : props.history.push("/login")}
         <h2>My User Profile</h2>
-        <p>your current count is: {counter}</p>
+        <p>Points: {counter}</p>
       </main>
     </React.Fragment>
 

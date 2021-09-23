@@ -1,12 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './FullPost.css';
 import Cookies from 'js-cookie';
 import { LikedProducts } from '../../store/LikedPosts';
+import { useHistory } from 'react-router-dom';
 
 const FullPost = (props) => {
 
     const { likedProducts, setLikedProducts} = useContext(LikedProducts);
+    const history = useHistory();
+    const status = useRef();
 
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -48,10 +51,19 @@ const FullPost = (props) => {
     };
 
      const editProduct = () => {
+
+        <div> {history.push(
+            {
+                pathname : "/editproduct",
+                state:{ id : productCall.id, name : productCall.name, quantity: productCall.quantity, price : productCall.price}
+        }
+
+        )} </div>
          //axios.patch() 
      }
      const changeStatus = () =>{
          //axios.patch()
+         console.log( status.current.value)
      }
 
     let post = <p style={{ justifyContent: 'space-around' }}> Please select a Post!</p>;
@@ -67,10 +79,11 @@ const FullPost = (props) => {
                     <button onClick={deleteProduct} className="Delete">Delete</button>
                     <button onClick={editProduct} className="edit">Edit</button>
                    <label> Change Status </label>
-                    <select onChange= {changeStatus}>
-                        <option> Shipped</option>
-                        <option> On Way</option>
-                        <option> Delivered </option>
+                    <select onChange= {changeStatus} ref={status}>
+                        <option value= "shipped"> Shipped</option>
+                        <option value ="onway"> On Way</option>
+                        <option value = "delivered"> Delivered </option>
+                        <option value = "canceled"> Canceled</option>
                     </select>
                 </div>
             </div>
