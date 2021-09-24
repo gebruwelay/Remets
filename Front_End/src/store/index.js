@@ -66,7 +66,7 @@ const authSlice = createSlice(
                     .then(response => {
                         console.log(response.data.jwt);
                         Cookies.set('user', response.data)
-                        Cookies.set('role', "buyer")
+                        Cookies.set('role', "seller")
 
                         axios.defaults.headers.common = {
                             'Authorization': 'Bearer ' + response.data.jwt,
