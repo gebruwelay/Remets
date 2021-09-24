@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Service
 @EnableWebSecurity
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:3000"})
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 
@@ -50,6 +50,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 //.antMatchers( "/admin/**").hasRole("ADMIN")
                 .antMatchers("/", "/h2-console/**").permitAll()
                 .antMatchers("/products").permitAll()
+                .antMatchers("/buyers/**").permitAll()
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/**/admin").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
@@ -60,6 +61,21 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().sameOrigin(); // to show my database
     }
 
+
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.cors().and().authorizeRequests() //
+//                //.antMatchers( "/admin/**").hasRole("ADMIN")
+//                .antMatchers("/", "/h2-console/**").permitAll()
+//                .antMatchers("/products").permitAll()
+//                .antMatchers("/authenticate").permitAll()
+//                .antMatchers("/**/admin").hasAuthority("ADMIN")
+//                .anyRequest().authenticated().and().csrf().disable()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//
+//        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//
+//        http.headers().frameOptions().sameOrigin(); // to show my database
+//    }
 
     @Bean
     @Override
