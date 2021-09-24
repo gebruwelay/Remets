@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Auth.module.css';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/index';
+import { userActions } from '../../store/index';
 import { Link, useHistory, Redirect} from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -14,7 +15,8 @@ const Auth = (props) => {
         const form = formData.current
         const userCredentials = { username: form['user'].value, password: form['password'].value };
         dispatch(authActions.login(userCredentials));
-    
+        dispatch(userActions.setUser(form['user'].value));
+
         // if(Cookies.get('role'))
         // {
         // let paths = [

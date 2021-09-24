@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"name": "Front_End",
+			"path": "../../.."
+		},
+		{
+			"name": "Demo4-Lesson12 JWT",
+			"path": "../../../../../../Lab/Lab10/Demo4-Lesson12 JWT"
+		},
+		{
+			"name": "SimplePost-FrontEnd-master",
+			"path": "../../../../../../../WAA July 2021/Exams/Final Exam/WAA Final Exam Starter Code/SimplePost-FrontEnd-master"
+		},
+		{
+			"name": "Demo2-Lesson10",
+			"path": "../../../../../../Lab/Demo2-Lesson10"
+		},
+		{
+			"name": "Labnine",
+			"path": "../../../../../../Lab/Labnine"
+		},
+		{
+			"name": "Lab9",
+			"path": "../../../../../../Lab/Lab9"
+		}
+	],
+	"settings": {}
+}

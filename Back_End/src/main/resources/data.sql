@@ -64,7 +64,7 @@ INSERT into USER (id, name, username, password, IS_Enabled)  VALUES (112, 'Buyer
 INSERT into USER (id, name, username, password, IS_Enabled)  VALUES (113, 'Seller','seller','$2y$12$ZULYuC/Cz4RQhK4DngP8s.SfhJA35gNayrpKGZTHCryBvcnKL8u4a',true);
 
 
-INSERT INTO ROLE(ROLE_ID, ROLE) VALUES (1, 'Buyer');
+INSERT INTO ROLE(ROLE_ID, ROLE) VALUES (1, 'BUYER');
 INSERT INTO ROLE(ROLE_ID, ROLE) VALUES (2, 'ADMIN');
 INSERT INTO ROLE(ROLE_ID, ROLE) VALUES (3, 'SELLER');
 

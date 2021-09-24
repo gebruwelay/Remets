@@ -5,6 +5,23 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 
 
+// user
+let user = { user: "admin"}
+let urole = null;
+const  userSlice = createSlice(
+    {
+        name: "user",
+        initialState: user,
+        reducers: {
+            setUser(state, action) {
+                urole= action.payload;
+                state.user = action.payload;
+            }
+        }
+
+    }
+
+)
 // total
 const totalIni = { total: 0 }
 const totalSlice = createSlice(
@@ -21,9 +38,6 @@ const totalSlice = createSlice(
     }
 
 )
-
-
-
 // Counter
 const initialCounterState = { counter: 0, showCounter: true };
 
@@ -64,9 +78,9 @@ const authSlice = createSlice(
                 state.user = userCred.username
                 axios.post('http://localhost:8080/authenticate', userCred)
                     .then(response => {
-                        console.log(response.data.jwt);
-                        Cookies.set('user', response.data)
-                        Cookies.set('role', "buyer")
+                        Cookies.set('user', response.data.jwt)
+                        console.log(user.user);
+                        Cookies.set('role', urole)
 
                         axios.defaults.headers.common = {
                             'Authorization': 'Bearer ' + response.data.jwt,
@@ -101,11 +115,13 @@ const store = configureStore({
         counter: counterSlice.reducer,
         auth: authSlice.reducer,
         total: totalSlice.reducer,
+        user: userSlice.reducer
     }
 });
 
 export const counterActions = counterSlice.actions;
 export const authActions = authSlice.actions;
 export const totalActions = totalSlice.actions;
+export const userActions = userSlice.actions;
 
 export default store;
