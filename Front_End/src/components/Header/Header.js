@@ -29,6 +29,9 @@ const Header = (props) => {
                         {(Cookies.get('role') == "seller") ? <Link to="/newproduct">New Product</Link> : null}
                     </li>
                     <li>
+                        {(Cookies.get('role') == "seller") ? <Link to="/products">Products</Link> : null}
+                    </li>
+                    <li>
                         {(Cookies.get('role') == "admin") ? <Link to="/sellers">Sellers</Link> : null}
                     </li>
                     <li>

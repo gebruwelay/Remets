@@ -8,50 +8,64 @@ import { useHistory } from 'react-router-dom';
 const FullPost = (props) => {
 
 
-    const { likedProducts, setLikedProducts } = useContext(LikedProducts);
+    // const { likedProducts, setLikedProducts } = useContext(LikedProducts);
+    const [p, setP] = useState([]);
+    const [del, setdel] = useState([]);
+    const [isLoading, setLoading] = useState(false); // indicates that is retreiving data
+    const [error, setError] = useState();
 
     const history = useHistory();
     const status = useRef();
 
+    const [sell, setsell] = useState([]);
 
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Cookies.get('user')}`
+
+    function fetchProductsHandler() {
+        const headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': `Bearer ${Cookies.get('user')}`
+        }
+        setError(null); // this is to set the error to null, if there were any previous errors existing 
+
+
+        axios.get("http://localhost:8080/products")
+            .then(response => {
+                setP(response.data);
+            })
+            .catch(error => {
+                setError(error.message);
+                setLoading(false);
+            });
+        axios.get("http://localhost:8080/sellers")
+            .then(response => {
+                setsell(response.data);
+            })
+            .catch(error => {
+                setError(error.message);
+                setLoading(false);
+            })
+
     }
 
-    const [productCall, setProductCall] = useState({});
-    const [renderedId, setRenderedId] = useState(null); // remove this one
-
-    useEffect(() => {
-        setRenderedId(props.match.params.id);
-    }, []);
-
-    useEffect(() => {
-        // if (renderedId !== props.match.params.id) {
-        //     axios("/products/" + props.match.params.id, { headers })
-        //         .then(response => {
-        //   setPostCall(response.data);
-        //     setRenderedId(props.match.params.id);
-        // })
-        // }
-        // return () =>{
-        //     console.log('post was unmounted')
-        // };
-    }, [props]);  // if I leave this empty here, it will update twice.  
-
-
+    useEffect(fetchProductsHandler, []); // This will be fetched when mounted
 
     const deleteProduct = () => {
-        //     axios.delete("/posts" + "/"+props.match.params.id, { headers })
-        //         .then(response => {
-        // let index = likedPosts.indexOf(parseInt(props.match.params.id))
-        let result = likedProducts.filter(product => product.id != parseInt(props.match.params.id));
-        setLikedProducts(result);
-        // delete likedPosts[index]
-        //     props.history.push('/posts');
-        // });
-    };
+        //  http://localhost:8080/sellers/1/products/1
+        axios.delete("http://localhost:8080/products/" + props.match.params.id)
+            .then(response => {
+                // let index = likedPosts.indexOf(parseInt(props.match.params.id))
+                let result = p.filter(product => product.id != parseInt(props.match.params.id));
+                setP(result);
+                console.log(result);
+                console.log(props.match.params.id);
+
+                props.history.push('/products');
+
+                // delete likedPosts[index]
+                //     props.history.push('/posts');
+                // });
+            });
+    }
 
 
     const editProduct = () => {
@@ -59,7 +73,7 @@ const FullPost = (props) => {
         <div> {history.push(
             {
                 pathname: "/editproduct",
-                state: { id: productCall.id, name: productCall.name, quantity: productCall.quantity, price: productCall.price }
+                state: { id: p.id, name: p.name, quantity: p.quantity, price: p.price }
             }
 
         )} </div>
@@ -75,10 +89,10 @@ const FullPost = (props) => {
     if (props.match.params.id != null) {
         post = (
             <div className="FullPost">
-                <h1>{productCall.name}</h1>
-                <p>{productCall.price}</p>
-                <p>{productCall.quantity}</p>
-                <p>{productCall.category}</p>
+                <h1>{p.name}</h1>
+                <p>{p.price}</p>
+                <p>{p.quantity}</p>
+                <p>{p.category}</p>
 
                 <div className="Edit">
                     <button onClick={deleteProduct} className="Delete">Delete</button>

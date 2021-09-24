@@ -27,19 +27,20 @@ const AddProduct = (props) => {
             price: form['price'].value,
             quantity: form['qty'].value,
             category: form['category'].value,
-            status: form['status'].value
+            // status: form['status'].value
         };
 
-       
 
-        // axios.post("/products", data, { headers: headers })
-        //     .then(data => {
-        //         console.log('Success:', data);
-        //         props.history.push('/products'); // push will add it to the page stack, replace will just replace the component  // props.history.replace('/posts'); 
-        //     })
-        //     .catch((error) => {
-        //         console.error('Error:', error);
-        //     });
+
+        axios.post("http://localhost:8080/products", data)
+            .then(data => {
+                alert("product added successfully!")
+                console.log('Success:', data);
+                props.history.push('/newproduct'); // push will add it to the page stack, replace will just replace the component  // props.history.replace('/posts'); 
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 
 

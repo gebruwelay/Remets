@@ -31,6 +31,11 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void deleteById(long id) {
+        Product product = getById(id).get();
+        product.getSellers().remove(product);
+        product.getReviews().remove(product);
+        product.getOrders().remove(product);
+        productRepo.save(product);
         productRepo.deleteById(id);
     }
 
