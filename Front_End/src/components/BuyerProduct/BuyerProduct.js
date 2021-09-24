@@ -18,10 +18,13 @@ const BuyerProduct = (props) => {
     const qty = useRef();
     const review = useRef();
     const [isOrder, setIsOrder] = useState(false);
-    const [general,setGeneral] = useState(true);
+
     const [cart1,setCart1] = useState(false);
+    const [general, setGeneral] = useState(true);
     let page = null;
     let history = useHistory();
+
+
     const orderHandler = () => {
         setIsOrder(true);
         page = null;
@@ -47,6 +50,8 @@ const BuyerProduct = (props) => {
              setCart1(true);
              setGeneral(false);
         })
+        setCart(true);
+        setGeneral(false);
         // <Carts name={props.name} price = {props.price} quantity= {qty.current.value}/>
         // send the review to the backend including the product id
         // let data {id: props.id, review = review.current.value}
@@ -71,6 +76,7 @@ const BuyerProduct = (props) => {
         <button onClick={addCart}>Add to Cart</button> 
 
     </article>)
+
    return (
 
     general ? (
@@ -97,7 +103,32 @@ const BuyerProduct = (props) => {
             : page)
 
 );
+    return (
 
+        general ? (
+            isOrder ?
+                <div>
+
+                    {history.push(
+                        {
+                            pathname: "/reciept",
+                            state: { id: props.location.state.id, name: props.location.state.name, seller: props.location.state.seller, quantity: qty.current.value, price: props.location.state.price }
+                        }
+
+                    )}</div>
+                : page)
+            : (cart ?
+                <div>
+                    {history.push(
+                        {
+                            pathname: "/carts",
+                            state: { id: props.location.state.id, name: props.location.state.name, seller: props.location.state.seller, quantity: qty.current.value, price: props.location.state.price }
+                        }
+
+                    )}</div>
+                : page)
+
+    );
 }
 
 export default BuyerProduct;

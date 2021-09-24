@@ -10,9 +10,10 @@ const Seller = (props) => {
         <article className="Seller" >
 
 
-            <h1>{props.name}</h1>
+            <div>{props.firstName}</div>
+            <div>{props.lastName}</div>
 
-            <p>  {props.phone}</p>
+            <div> {props.phoneNumber}</div>
 
 
 

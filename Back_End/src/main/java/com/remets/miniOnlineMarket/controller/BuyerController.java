@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+
 @CrossOrigin(origins = "http://localhost:3000")
+
 @RestController
 @RequestMapping("/buyers")
 public class BuyerController {

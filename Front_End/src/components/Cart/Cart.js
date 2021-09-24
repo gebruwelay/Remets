@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { LikedProducts, LikedPosts } from '../../store/LikedPosts';
 import './Cart.css'
 import { totalActions } from '../../store';
@@ -25,8 +25,12 @@ const Cart = (props) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${Cookies.get('user')}`
     }
+    const qty = useRef();
+
+    
     const orderHandler = () => {
     setIsOrder(true);
+    page = null;
     // let data = {
     //     "orderStatus" : "orderd",
     //     "order_buyer": props.buyerId,
@@ -55,6 +59,8 @@ const Cart = (props) => {
             <div className="price">${props.price} </div>
             <div className="quantity">{props.quantity}</div>
             <div className="quantity"><h4>total price: ${props.totalprice}</h4></div>
+
+
         </div>
 
 

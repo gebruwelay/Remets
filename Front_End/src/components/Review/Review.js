@@ -1,5 +1,5 @@
 import React from "react";
-
+import axios from "axios";
 
 import './Review.css';
 
@@ -11,12 +11,24 @@ const Review = (props) => {
         <article className="Review" >
 
 
-            <p>Buyer name:{props.buyerName}</p>
-            <p>seller name:{props.sellerName}</p>
-            <p> Review:{props.review}</p>
 
-            <input type="checkbox" id="vehicle1" name="vehicle1" />
-            <label for="vehicle1"> </label>
+            <div>{props.productReview}</div>
+
+            <button onClick={() => {
+                let buyerId = 1;
+                let sellerid = props.id
+                //call to the backend
+                //let index = likedPosts.indexOf(props.id);
+                axios.get("http://localhost:8080/review/" + sellerid + "/reviews")
+                    .then(res => {
+                        alert("successfully approved!")
+
+                    })
+                // delete likedPosts[index];
+
+            }}>
+
+                aprrove </button>
 
         </article>
 

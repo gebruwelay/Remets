@@ -4,10 +4,11 @@
     justify-content: center;
     width: 80%;
     margin: auto;
+    
 }
 
 
-.Reviews ul {
+.Reviews  ul {
     list-style: none;
     margin:0;
     padding:0;
@@ -19,7 +20,4 @@
 .Reviews li {
     display: inline-block;
     margin: 20px;
-}
-button{
-   margin-left: 50%;
 }
