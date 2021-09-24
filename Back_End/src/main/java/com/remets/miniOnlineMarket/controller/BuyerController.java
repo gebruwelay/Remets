@@ -9,7 +9,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+<<<<<<< HEAD
 @CrossOrigin
+=======
+@CrossOrigin(origins = "http://localhost:3000")
+>>>>>>> 04ccf44ef665a58e802be109ac2c8d3adaa0f10a
 @RestController
 @RequestMapping("/buyers")
 public class BuyerController {

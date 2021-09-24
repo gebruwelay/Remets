@@ -60,7 +60,9 @@ const BuyerProducts = (props) => {
                 price={product.price}
                 quantity={product.quantity}
                 seller={product.sellers.length > 0 ? product.sellers[0].firstName : null}
+                sellerId={product.sellers.length > 0 ? product.sellers[0].id : null}
                 review={product.reviews.length > 0 ? product.reviews[0].productReview : null}
+
                 clicked={() => { productSelectedHandler(product.id) }}
                 id={product.id} />
         </Link>

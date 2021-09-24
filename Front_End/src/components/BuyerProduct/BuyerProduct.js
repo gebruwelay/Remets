@@ -44,7 +44,7 @@ const BuyerProduct = (props) => {
             <div className="quantity"> Quantity:<input ref={qty} type="number" /></div>
             <div className="review"> Review<textarea ref={review} rows="4" /></div>
         </div>
-        <button onClick={addCart}>Add to Cart</button> <button onClick={orderHandler}> Make Payment</button>
+        <button onClick={addCart}>Add to Cart</button> 
 
     </article>)
     return (
