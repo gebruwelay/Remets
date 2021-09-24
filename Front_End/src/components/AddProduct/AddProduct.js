@@ -36,7 +36,7 @@ const AddProduct = (props) => {
             .then(data => {
                 alert("product added successfully!")
                 console.log('Success:', data);
-                props.history.push('/newproduct'); // push will add it to the page stack, replace will just replace the component  // props.history.replace('/posts'); 
+                props.history.push('/products'); // push will add it to the page stack, replace will just replace the component  // props.history.replace('/posts'); 
             })
             .catch((error) => {
                 console.error('Error:', error);
