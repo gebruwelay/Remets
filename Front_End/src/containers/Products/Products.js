@@ -31,49 +31,49 @@ const Products = (props) => {
         }
         setError(null); // this is to set the error to null, if there were any previous errors existing 
         
-        setProducts([...products,
-            {
-                "id":1,
-                "name":"laptop",
-                "category":"Electronics",
-                "price":123.0,
-                "quantity":7,
-                "status": "shipped"
-             },
-            {
-                "id":2,
-                "name":"smartphone",
-                "category":"Electronics",
-                "price":333.0,
-                "quantity":90,
-                "status":"onway",
-            },
-            {
-                "id":3,
-                "name":"pen",
-                "category":"educational",
-                "price":1.0,
-                "quantity":909,
-                "status":"dilivered"
-            },
-            {
-                "id":4,
-                "name":"Addidas",
-                "category":"shoe",
-                "price":1.0,
-                "quantity":34,
-                "status": ""
-            }
+    //     setProducts([...products,
+    //         {
+    //             "id":1,
+    //             "name":"laptop",
+    //             "category":"Electronics",
+    //             "price":123.0,
+    //             "quantity":7,
+    //             "status": "shipped"
+    //          },
+    //         {
+    //             "id":2,
+    //             "name":"smartphone",
+    //             "category":"Electronics",
+    //             "price":333.0,
+    //             "quantity":90,
+    //             "status":"onway",
+    //         },
+    //         {
+    //             "id":3,
+    //             "name":"pen",
+    //             "category":"educational",
+    //             "price":1.0,
+    //             "quantity":909,
+    //             "status":"dilivered"
+    //         },
+    //         {
+    //             "id":4,
+    //             "name":"Addidas",
+    //             "category":"shoe",
+    //             "price":1.0,
+    //             "quantity":34,
+    //             "status": ""
+    //         }
     
-    ])
-        // axios.get("/posts", { headers:headers})
-        //     .then(response => {
-        //         setPosts(response.data);
-        //     })
-        //     .catch(error => {
-        //         setError(error.message);
-        //         setLoading(false);
-        //     })
+    // ])
+        axios.get("/products", { headers:headers})
+            .then(response => {
+                setProducts(response.data);
+            })
+            .catch(error => {
+                setError(error.message);
+                setLoading(false);
+            })
 
     }
 
@@ -91,7 +91,7 @@ const Products = (props) => {
                 category={product.category}
                 price = {product.price}
                 quantity = {product.quantity}
-                status = {product.status}
+                // status = {product.status}
                 clicked={() => { postSelectedHandler(product.id) }}
                 id={product.id} />
         </Link>

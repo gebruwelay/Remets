@@ -64,8 +64,9 @@ const authSlice = createSlice(
                 state.user = userCred.username
                 axios.post('http://localhost:8080/authenticate', userCred)
                     .then(response => {
-                        Cookies.set('user', response.data.jwt)
-                        Cookies.set('role',"seller")
+                        console.log(response.data.jwt);
+                        Cookies.set('user', response.data)
+                        Cookies.set('role',"buyer")
                         axios.defaults.headers.common = {
                             'Authorization': 'Bearer ' + response.data.jwt
                         };
@@ -75,7 +76,6 @@ const authSlice = createSlice(
 
                 if (Cookies.get('user') != null) {
                     state.isAuthenticated = true
-                    console.log(state.isAuthenticated);
                 }
 
 

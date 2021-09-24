@@ -31,53 +31,54 @@ const BuyerProducts = (props) => {
         }
         setError(null); // this is to set the error to null, if there were any previous errors existing 
         
-        setProducts([...products,
-            {
-                "id":1,
-                "name":"laptop",
-                "category":"Electronics",
-                "price":123.0,
-                "review":"ow so cool bro!",
-                "quantity":50,
-                "seller":"Adidas"
-             },
-             {
-                "id":2,
-                "name":"Rebok shoe",
-                "category":"Shoe",
-                "price":123.0,
-                "review":"ow so cool bro!",
-                "quantity":50,
-                "seller":"Rebok"
-             },
-             {
-                "id":3,
-                "name":"T-shirt",
-                "category":"cloth",
-                "price":123.0,
-                "review":"ow so cool bro!",
-                "quantity":50,
-                "seller":"addidas"
-             },
-             {
-                "id":4,
-                "name":"smartPhone",
-                "category":"Electronics",
-                "price":123.0,
-                "review":"ow so cool bro!",
-                "quantity":50,
-                "seller":"Bic"
-             },
+    //     setProducts([...products,
+    //         {
+    //             "id":1,
+    //             "name":"laptop",
+    //             "category":"Electronics",
+    //             "price":123.0,
+    //             "review":"ow so cool bro!",
+    //             "quantity":50,
+    //             "seller":"Adidas"
+    //          },
+    //          {
+    //             "id":2,
+    //             "name":"Rebok shoe",
+    //             "category":"Shoe",
+    //             "price":123.0,
+    //             "review":"ow so cool bro!",
+    //             "quantity":50,
+    //             "seller":"Rebok"
+    //          },
+    //          {
+    //             "id":3,
+    //             "name":"T-shirt",
+    //             "category":"cloth",
+    //             "price":123.0,
+    //             "review":"ow so cool bro!",
+    //             "quantity":50,
+    //             "seller":"addidas"
+    //          },
+    //          {
+    //             "id":4,
+    //             "name":"smartPhone",
+    //             "category":"Electronics",
+    //             "price":123.0,
+    //             "review":"ow so cool bro!",
+    //             "quantity":50,
+    //             "seller":"Bic"
+    //          },
     
-    ])
-        // axios.get("/posts", { headers:headers})
-        //     .then(response => {
-        //         setPosts(response.data);
-        //     })
-        //     .catch(error => {
-        //         setError(error.message);
-        //         setLoading(false);
-        //     })
+    // ])
+        axios.get("http://localhost:8080/products")
+            .then(response => {
+                setProducts(response.data);
+                console.log(products)
+            })
+            .catch(error => {
+                setError(error.message);
+                setLoading(false);
+            })
 
     }
 
@@ -95,8 +96,8 @@ const BuyerProducts = (props) => {
                 category={product.category}
                 price = {product.price}
                 quantity = {product.quantity}
-                seller = {product.seller}
-                review = {product.review}
+                seller = {product.sellers.length>0?product.sellers[0].firstName:null}
+                review = { product.reviews.length>0?product.reviews[0].productReview:null}
                 clicked={() => { productSelectedHandler(product.id) }}
                 id={product.id} />
         </Link>
