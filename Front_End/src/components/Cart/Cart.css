@@ -1,6 +1,6 @@
 .Cart {
     width: 300px;
-    height: 200px;
+    height: inherit;
     padding: 16px;
     text-align: center;
     border: 1px solid #eee;

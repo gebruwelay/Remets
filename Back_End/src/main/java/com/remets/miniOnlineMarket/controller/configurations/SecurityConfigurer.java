@@ -53,6 +53,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("/review/**").permitAll()
                 .antMatchers("/products").permitAll()
                 .antMatchers("/buyers/**").permitAll()
+                .antMatchers("/carts/**").permitAll()
+                .antMatchers("/orders").permitAll()
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/**/admin").hasAuthority("ADMIN")
                 .anyRequest().authenticated()

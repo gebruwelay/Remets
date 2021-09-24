@@ -3,12 +3,23 @@ import React, { useContext, useRef, useState } from 'react';
 import { LikedProducts } from '../../store/LikedPosts';
 import './BuyerProduct.css'
 import { useHistory } from "react-router-dom";
+import { carts } from '../../store/carts';
+import Cookies from 'js-cookie';
+
 const BuyerProduct = (props) => {
 
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Cookies.get('user')}`
+    }
+
+    const { cart, setCart } = useContext(carts);
     const qty = useRef();
     const review = useRef();
     const [isOrder, setIsOrder] = useState(false);
-    const [cart, setCart] = useState(false);
+
+    const [cart1,setCart1] = useState(false);
     const [general, setGeneral] = useState(true);
     let page = null;
     let history = useHistory();
@@ -21,6 +32,24 @@ const BuyerProduct = (props) => {
         //isAuthenticated? <BuyerProduct name= {props.name} seller = {props.seller} price = {props.seller}/>
     }
     const addCart = () => {
+
+       let data = {
+        "buyer_id": props.location.state.buyerId,
+        "product_id": props.location.state.id
+    }
+    axios.post("http://localhost:8080/carts/",data)
+    .then(res=> {
+            setCart([...cart,
+                {
+                    "id":props.location.state.id, 
+                    "name":props.location.state.name,
+                    "price":props.location.state.price,
+                    "quantity":qty.current.value,
+                    "buyerId": props.location.state.buyerId
+             }]);
+             setCart1(true);
+             setGeneral(false);
+        })
         setCart(true);
         setGeneral(false);
         // <Carts name={props.name} price = {props.price} quantity= {qty.current.value}/>
@@ -38,7 +67,7 @@ const BuyerProduct = (props) => {
     }
     page = (<article className="BuyerProduct" onClick={props.clicked}>
         <div className="Info">
-            <div className="seller">{props.location.state.name}</div>
+            <div className="name">{props.location.state.name}</div>
             <div className="seller">{props.location.state.seller}</div>
             <div className="price">${props.location.state.price}</div>
             <div className="quantity"> Quantity:<input ref={qty} type="number" /></div>
@@ -47,6 +76,33 @@ const BuyerProduct = (props) => {
         <button onClick={addCart}>Add to Cart</button> 
 
     </article>)
+
+   return (
+
+    general ? (
+        isOrder ?
+            <div>
+
+                {history.push(
+                    {
+                        pathname: "/reciept",
+                        state: { id: props.location.state.id, name: props.location.state.name, seller: props.location.state.seller, quantity: qty.current.value, price: props.location.state.price }
+                    }
+
+                )}</div>
+            : page)
+        : (cart1 ?
+            <div>
+                {history.push(
+                    {
+                        pathname: "/carts",
+                        state: { buyerid: props.location.state.buyerId,id: props.location.state.id, name: props.location.state.name, seller: props.location.state.seller, quantity: qty.current.value, price: props.location.state.price }
+                    }
+
+                )}</div>
+            : page)
+
+);
     return (
 
         general ? (

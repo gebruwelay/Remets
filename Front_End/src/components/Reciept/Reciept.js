@@ -27,7 +27,9 @@ const Reciept = (props) => {
 
                 <div className="seller"><b>Quantity----------</b> {props.location.state.quantity}</div>
 
-                <div className="price"><b>Price------------</b>${props.location.state.price}</div>
+                <div className="price"><b>Unit Price------------</b>${props.location.state.price}</div>
+                <div className="price"><b>Total Price-----------</b>${props.location.state.totalprice}</div>
+
 
             </div>
             <button onClick={handlePrint}>Print</button>

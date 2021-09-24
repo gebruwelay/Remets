@@ -70,7 +70,8 @@ const authSlice = createSlice(
 
                         axios.defaults.headers.common = {
                             'Authorization': 'Bearer ' + response.data.jwt,
-                            'Access-Control-Allow-Origin': '*'
+                            'Access-Control-Allow-Origin': '*',
+                            'Content-Type': 'application/json'
                         };
 
                     })
