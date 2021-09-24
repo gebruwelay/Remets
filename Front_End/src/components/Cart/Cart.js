@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { LikedProducts, LikedPosts } from '../../store/LikedPosts';
 import './Cart.css'
 import { totalActions } from '../../store';
@@ -14,6 +14,7 @@ const Cart = (props) => {
     const [isOrder, setIsOrder] = useState(false)
     let page = null;
     let history = useHistory();
+    const qty = useRef();
     const orderHandler = () => {
         setIsOrder(true);
         page = null;
@@ -34,7 +35,7 @@ const Cart = (props) => {
         <h2>{props.name}</h2>
         <div className="Info">
             <div className="price">${props.price} </div>
-            <div className="quantity">{props.quantity}</div>
+            <div className="quantity"> Quantity:<input ref={qty} type="number" /></div>
 
 
         </div>

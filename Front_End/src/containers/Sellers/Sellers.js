@@ -1,58 +1,56 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 
 import Seller from '../../components/Seller/Seller';
 
 import './Sellers.css';
+import { Link, Route } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 
 
 function Sellers() {
-    // const headers = { "Access-Control-Allow-Origin": "*" };
+    const [isLoading, setLoading] = useState(false); // indicates that is retreiving data
+    const [error, setError] = useState();
+    const [sell, setsell] = useState([]);
 
-    // const [sell, setsell] = useState([]);
-    // useEffect(() => {
-    //     //axios.get(API_URL,{headers})       
-    //     axios.get('http://localhost:8080/posts', { headers })
-    //         .then(response => {
-    //             setsell([...response.data])
-    //         }).catch(err => console.log("Error::" + err));
-    // }, []);
-    // const [selectedId, setSelectedId] = useState([]);
-
-    const sellerList = [
-        {
-            id: "111",
-            name: "Meti",
-            phone: "+12335474659182"
-        },
-        {
-            id: "112",
-            name: "Tedros",
-            phone: "+120976755482"
-        },
-        {
-            id: "113",
-            name: "Pascal",
-            phone: "+8977645474659182"
+    function fetchProductsHandler() {
+        const headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': `Bearer ${Cookies.get('user')}`
         }
-    ];
-    // const postSelectedHandler = (id) => {
-    //     setSelectedId(id);
-    // }
+        setError(null);
 
-    // <section>
-    //             <FullPost
-    //                 id={selectedId}
-    //                 title={{ ...sell[selectedId - 1] }.title}
-    //                 content={{ ...sell[selectedId - 1] }.content}
-    //             />
-    //         </section>
-    const processedSellerList = sellerList.map((sell) => <Seller id={sell.id} name={sell.name} phone={sell.phone}></Seller>);
+
+
+        axios.get("http://localhost:8080/sellers", { headers })
+            .then(response => {
+                setsell(response.data);
+                console.log("lets see", sell)
+
+            })
+            .catch(error => {
+                setError(error.message);
+                setLoading(false);
+            });
+    }
+    useEffect(fetchProductsHandler, []);
+
+    const processedSellerList = sell.map(sel => {
+        // <Link to={props.match.url + "/" + sel.id} key={sel.id}>
+        return <Seller
+            id={sel.id}
+            firstName={sel.firstName}
+            lastName={sel.lastName}
+            phoneNumber={sel.phoneNumber} />
+        // </Link>
+    });
+    let content = processedSellerList
 
     return (
         <div>
             <section className="Sellers">
-                {processedSellerList}
+                {content}
             </section>
         </div>
 

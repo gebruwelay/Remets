@@ -22,54 +22,17 @@ const BuyerProducts = (props) => {
     const [selectedId, setSelectedId] = useState(null);
     const [show, setVisibility] = useState(false);  // Just for demonstration 
 
-    const [incrementValue , setIncrementValue] = useState(1);
+    const [incrementValue, setIncrementValue] = useState(1);
 
     function fetchProductsHandler() {
         const headers = {
             'Access-Control-Allow-Origin': '*',
-            'Authorization':`Bearer ${Cookies.get('user')}`
+            'Authorization': `Bearer ${Cookies.get('user')}`
         }
         setError(null); // this is to set the error to null, if there were any previous errors existing 
-        
-    //     setProducts([...products,
-    //         {
-    //             "id":1,
-    //             "name":"laptop",
-    //             "category":"Electronics",
-    //             "price":123.0,
-    //             "review":"ow so cool bro!",
-    //             "quantity":50,
-    //             "seller":"Adidas"
-    //          },
-    //          {
-    //             "id":2,
-    //             "name":"Rebok shoe",
-    //             "category":"Shoe",
-    //             "price":123.0,
-    //             "review":"ow so cool bro!",
-    //             "quantity":50,
-    //             "seller":"Rebok"
-    //          },
-    //          {
-    //             "id":3,
-    //             "name":"T-shirt",
-    //             "category":"cloth",
-    //             "price":123.0,
-    //             "review":"ow so cool bro!",
-    //             "quantity":50,
-    //             "seller":"addidas"
-    //          },
-    //          {
-    //             "id":4,
-    //             "name":"smartPhone",
-    //             "category":"Electronics",
-    //             "price":123.0,
-    //             "review":"ow so cool bro!",
-    //             "quantity":50,
-    //             "seller":"Bic"
-    //          },
-    
-    // ])
+
+
+        // ])
         axios.get("http://localhost:8080/products")
             .then(response => {
                 setProducts(response.data);
@@ -90,14 +53,14 @@ const BuyerProducts = (props) => {
 
     // We can do this rather than this :: <Post title={{...posts[1]}.title} />
     const rposts = products.map(product => {
-        return <Link to={props.match.url+"/"+ product.id} key={product.id}>
+        return <Link to={props.match.url + "/" + product.id} key={product.id}>
             <Buyer
                 name={product.name}
                 category={product.category}
-                price = {product.price}
-                quantity = {product.quantity}
-                seller = {product.sellers.length>0?product.sellers[0].firstName:null}
-                review = { product.reviews.length>0?product.reviews[0].productReview:null}
+                price={product.price}
+                quantity={product.quantity}
+                seller={product.sellers.length > 0 ? product.sellers[0].firstName : null}
+                review={product.reviews.length > 0 ? product.reviews[0].productReview : null}
                 clicked={() => { productSelectedHandler(product.id) }}
                 id={product.id} />
         </Link>
@@ -106,7 +69,7 @@ const BuyerProducts = (props) => {
     let content = rposts
     return (
         <div>
-           
+
             <section className="BuyerProducts">
                 {content}
             </section>

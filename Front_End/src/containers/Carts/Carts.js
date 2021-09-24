@@ -68,6 +68,7 @@ const Carts = (props) => {
             price={cart.price}
             quantity={cart.quantity}
 
+
             //clicked={() => { postSelectedHandler(cart.id) }}
             id={cart.id} />
         // </Link>
