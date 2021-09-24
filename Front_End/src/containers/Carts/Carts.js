@@ -53,11 +53,11 @@ const Carts = (props) => {
         }
 
     ];
-    useEffect(() => {
-        cartList.map(cart => {
-            setLikedPosts([...likedPosts, { "id": props.id, "name": props.name, "price": props.price, "quantity": props.quantity }])
-        });
-    }, []);
+    // useEffect(() => {
+    //     cartList.map(cart => {
+    //         setLikedPosts([...likedPosts, { "id": cart.id, "name": cart.name, "price": cart.price, "quantity": cart.quantity }])
+    //     });
+    // }, []);
 
 
     const rposts = cartList.map(cart => {
