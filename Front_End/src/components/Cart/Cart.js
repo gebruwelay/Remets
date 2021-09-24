@@ -21,13 +21,14 @@ const Cart = (props) => {
         //isAuthenticated? <BuyerProduct name= {props.name} seller = {props.seller} price = {props.seller}/>
     }
 
-    useEffect(() => {
-        setLikedPosts([...likedPosts, { "id": props.id, "name": props.name, "price": props.price, "quantity": props.quantity }]);
-    }, []);
+
+
     const removeHandler = () => {
 
         setLikedPosts(likedPosts.filter(post => post.id != props.id));
     }
+
+
     page = (<article className="Cart" >
 
         <h2>{props.name}</h2>
