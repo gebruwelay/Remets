@@ -1,44 +1,69 @@
-import React from 'react'
+import { produceWithPatches } from '@reduxjs/toolkit/node_modules/immer';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import Review from '../../components/Review/Review';
 import './Reviews.css';
 
 
 
-function Reviews() {
-    const reviewList = [
-        {
-            id: "111",
-            buyerName: "Meti",
-            sellerName: "helina",
-            review: "i am not sure"
-        },
-        {
-            id: "112",
-            buyerName: "momi",
-            sellerName: "helina",
-            review: "i dont like the product"
-        },
-        {
-            id: "113",
-            buyerName: "heran",
-            sellerName: "selena",
-            review: "it is a good product"
+function Reviews(props) {
+    const [reviews, setReviews] = useState([]);
+    const [isLoading, setLoading] = useState(false); // indicates that is retreiving data
+    const [error, setError] = useState();
+
+
+
+
+    function fetchProductsHandler() {
+        const headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': `Bearer ${Cookies.get('user')}`
         }
-    ];
-    const processedReviewList = reviewList.map((review) => <Review id={review.id} buyerName={review.buyerName} sellerName={review.sellerName} review={review.review} ></Review>);
-    return (
+        setError(null); // this is to set the error to null, if there were any previous errors existing 
 
-        <div>
-            <h1>Reviews to be approved:</h1>
-            <section className="Reviews">
-                {processedReviewList}
 
-            </section>
-            <button >Approve</button>
+        // ])
+        axios.get("http://localhost:8080/review")
+            .then(response => {
+                setReviews(response.data);
+                console.log("see", reviews);
 
-        </div>
-    )
+            })
+            .catch(error => {
+                setError(error.message);
+                setLoading(false);
+            })
+
+    }
+
+    useEffect(fetchProductsHandler, []); // This will be fetched when mounted
+
+
+
+    // We can do this rather than this :: <Post title={{...posts[1]}.title} />
+    const rposts = reviews.map(review => {
+
+        return <Review
+            id={review.id}
+            productReview={review.productReview}
+        />
+    });
+
+    let content = rposts;
+
+
+
+    return (<article className="Reviews" >
+
+
+        {content}
+
+
+
+    </article>
+    );
 }
 
 export default Reviews;

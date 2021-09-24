@@ -50,7 +50,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 //.antMatchers( "/admin/**").hasRole("ADMIN")
                 .antMatchers("/", "/h2-console/**").permitAll()
                 .antMatchers("/sellers").permitAll()
-                .antMatchers("/review").permitAll()
+                .antMatchers("/review/**").permitAll()
                 .antMatchers("/products").permitAll()
                 .antMatchers("/buyers/**").permitAll()
                 .antMatchers("/authenticate").permitAll()

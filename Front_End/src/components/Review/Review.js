@@ -1,63 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
-
 
 import './Review.css';
 
 const Review = (props) => {
-    const [reviews, setReviews] = useState([]);
-    const [isLoading, setLoading] = useState(false); // indicates that is retreiving data
-    const [error, setError] = useState();
 
 
 
-
-    function fetchProductsHandler() {
-        const headers = {
-            'Access-Control-Allow-Origin': '*',
-            'Authorization': `Bearer ${Cookies.get('user')}`
-        }
-        setError(null); // this is to set the error to null, if there were any previous errors existing 
-
-
-        // ])
-        axios.get("http://localhost:8080/review")
-            .then(response => {
-                setReviews(response.data);
-
-            })
-            .catch(error => {
-                setError(error.message);
-                setLoading(false);
-            })
-
-    }
-
-    useEffect(fetchProductsHandler, []); // This will be fetched when mounted
+    return (
+        <article className="Review" >
 
 
 
-    // We can do this rather than this :: <Post title={{...posts[1]}.title} />
-    const rposts = reviews.map(review => {
+            <div>{props.productReview}</div>
 
-        return review;
-    });
+            <button onClick={() => {
+                let buyerId = 1;
+                let sellerid = props.id
+                //call to the backend
+                //let index = likedPosts.indexOf(props.id);
+                axios.get("http://localhost:8080/review/" + sellerid + "/reviews")
+                    .then(res => {
+                        alert("successfully approved!")
 
-    let content = rposts
+                    })
+                // delete likedPosts[index];
 
+            }}>
 
+                aprrove </button>
 
-    return (<article className="Review" >
+        </article>
 
-
-        {content}
-
-        <input type="checkbox" id="vehicle1" name="vehicle1" />
-        <label for="vehicle1"> </label>
-        <button>approve</button>
-
-    </article>
 
     )
 }

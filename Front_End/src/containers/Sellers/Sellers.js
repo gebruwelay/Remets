@@ -23,7 +23,7 @@ function Sellers() {
 
 
 
-        axios.get("http://localhost:8080/sellers", { headers })
+        axios.get("http://localhost:8080/sellers")
             .then(response => {
                 setsell(response.data);
                 console.log("lets see", sell)
@@ -45,7 +45,7 @@ function Sellers() {
             phoneNumber={sel.phoneNumber} />
         // </Link>
     });
-    let content = processedSellerList
+    let content = processedSellerList;
 
     return (
         <div>
