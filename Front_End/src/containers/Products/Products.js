@@ -22,52 +22,19 @@ const Products = (props) => {
     const [selectedId, setSelectedId] = useState(null);
     const [show, setVisibility] = useState(false);  // Just for demonstration 
 
-    const [incrementValue , setIncrementValue] = useState(1);
+    const [incrementValue, setIncrementValue] = useState(1);
 
     function fetchProductsHandler() {
         const headers = {
             'Access-Control-Allow-Origin': '*',
-            'Authorization':`Bearer ${Cookies.get('user')}`
+            'Authorization': `Bearer ${Cookies.get('user')}`
         }
         setError(null); // this is to set the error to null, if there were any previous errors existing 
-        
-    //     setProducts([...products,
-    //         {
-    //             "id":1,
-    //             "name":"laptop",
-    //             "category":"Electronics",
-    //             "price":123.0,
-    //             "quantity":7,
-    //             "status": "shipped"
-    //          },
-    //         {
-    //             "id":2,
-    //             "name":"smartphone",
-    //             "category":"Electronics",
-    //             "price":333.0,
-    //             "quantity":90,
-    //             "status":"onway",
-    //         },
-    //         {
-    //             "id":3,
-    //             "name":"pen",
-    //             "category":"educational",
-    //             "price":1.0,
-    //             "quantity":909,
-    //             "status":"dilivered"
-    //         },
-    //         {
-    //             "id":4,
-    //             "name":"Addidas",
-    //             "category":"shoe",
-    //             "price":1.0,
-    //             "quantity":34,
-    //             "status": ""
-    //         }
-    
-    // ])
-        axios.get("/products", { headers:headers})
+
+
+        axios.get("http://localhost:8080/products")
             .then(response => {
+
                 setProducts(response.data);
             })
             .catch(error => {
@@ -86,21 +53,26 @@ const Products = (props) => {
     // We can do this rather than this :: <Post title={{...posts[1]}.title} />
     const rposts = products.map(product => {
         return <Link to={props.match.url + '/' + product.id} key={product.id}>
+            {/* if (product.approved) { */}
+
             <Product
                 name={product.name}
                 category={product.category}
-                price = {product.price}
-                quantity = {product.quantity}
+                price={product.price}
+                quantity={product.quantity}
+
                 // status = {product.status}
-                clicked={() => { postSelectedHandler(product.id) }}
+                // clicked={() => { postSelectedHandler(product.id) }}
                 id={product.id} />
+            {/* } */}
         </Link>
+
     });
 
     let content = rposts
     return (
         <div>
-           
+
             <section className="Products">
                 {content}
             </section>

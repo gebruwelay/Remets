@@ -82,6 +82,7 @@ const authSlice = createSlice(
                         console.log(user.user);
                         Cookies.set('role', urole)
 
+
                         axios.defaults.headers.common = {
                             'Authorization': 'Bearer ' + response.data.jwt,
                             'Access-Control-Allow-Origin': '*',

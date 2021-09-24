@@ -8,6 +8,7 @@ const Product = (props) => {
         <article className="Product" onClick={props.clicked}>
             <h1>{props.name}</h1>
             <div className="Info">
+
                 <div className="price">${props.price}</div>
                 <div className="quantity">{props.quantity}</div>
                 <div className="status">{props.status}</div>
