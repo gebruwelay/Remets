@@ -90,7 +90,7 @@ const Buyer = (props) => {
            <div> {history.push(
                 {
                     pathname : "/buyerproduct",
-                    state:{ id : props.id,name : props.name, seller:props.seller, price : props.price}
+                    state:{ buyerId:1, id : props.id,name : props.name, seller:props.seller, price : props.price}
             }
 
             )}

@@ -11,12 +11,13 @@ import { totalActions } from '../../store/index';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { LikedPosts } from '../../store/LikedPosts';
+import { carts } from '../../store/carts';
 
 
 
 const Carts = (props) => {
 
-    const { likedPosts, setLikedPosts } = useContext(LikedPosts);
+    const { cart, setCart } = useContext(carts);
 
     const cartList = [
         {
@@ -59,15 +60,15 @@ const Carts = (props) => {
     //     });
     // }, []);
 
-
-    const rposts = cartList.map(cart => {
+   
+    const rposts = cart.map(cart => {
         // return <Link to={props.match.url + '/' + cart.id} key={cart.id}>
         return <Cart key={cart.id}
             name={cart.name}
-
             price={cart.price}
             quantity={cart.quantity}
-
+            totalprice={cart.quantity*cart.price}
+            buyerId= {cart.buyerid}
             //clicked={() => { postSelectedHandler(cart.id) }}
             id={cart.id} />
         // </Link>
@@ -78,7 +79,7 @@ const Carts = (props) => {
 
     return (
         <div>
-            <h2> products in cart:</h2>
+            <h2> products in cart:({cart.length})</h2>
 
             <section className="Carts">
                 {content}

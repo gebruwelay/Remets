@@ -111,7 +111,7 @@ const BuyerProducts = (props) => {
             <section className="BuyerProducts">
                 {content}
             </section>
-            <Route path={props.match.url + '/:id'} component={FullPost} />
+            {/* <Route path={props.match.url + '/:id'} component={FullPost} /> */}
         </div>
     );
 }
