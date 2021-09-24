@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions } from '../../store/index';
-import { Link, Redirect,useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import 'react-router';
 import Cookies from 'js-cookie';
 
@@ -26,19 +26,16 @@ const Header = (props) => {
             {Cookies.get('role') && (<nav>
                 <ul>
                     <li>
-                       { (Cookies.get('role')=="seller")? <Link to="/newproduct">New Product</Link>:null}
+                        {(Cookies.get('role') == "seller") ? <Link to="/newproduct">New Product</Link> : null}
                     </li>
                     <li>
-                       {(Cookies.get('role')=="seller")?<Link to="/products"> Products</Link>:null}
+                        {(Cookies.get('role') == "admin") ? <Link to="/sellers">Sellers</Link> : null}
                     </li>
                     <li>
-                        {(Cookies.get('role')=="admin")?<Link to="/sellers">Sellers</Link>:null}
+                        {(Cookies.get('role') == "admin") ? <Link to="/reviews">Reviews</Link> : null}
                     </li>
                     <li>
-                        {(Cookies.get('role')=="admin")?<Link to="/reviews">Reviews</Link>:null}
-                    </li>
-                    <li>
-                        {(Cookies.get('role')=="buyer")?<Link to="/buyerproducts">Products</Link>:null}
+                        {(Cookies.get('role') == "buyer") ? <Link to="/buyerproducts">Products</Link> : null}
                     </li>
                     <li>
                         <Link to="/user"> Profile </Link>

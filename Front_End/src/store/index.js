@@ -1,29 +1,29 @@
-
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useState } from 'react';
-import {useHistory} from 'react-router-dom'
-
-// role 
-
-
+import { useHistory } from 'react-router-dom'
 
 
 // total
-const totalIni= {total:0}
+const totalIni = { total: 0 }
 const totalSlice = createSlice(
     {
         name: "total",
-        initialState:totalIni,
-        reducers:{
-            increment(state,action){
-                state.total+=action.payload;
+        initialState: totalIni,
+        reducers: {
+            increment(state, action) {
+                state.total = state.total + action.payload;
+
             }
         }
 
     }
-) 
+
+)
+
+
+
 // Counter
 const initialCounterState = { counter: 0, showCounter: true };
 
@@ -49,7 +49,7 @@ const counterSlice = createSlice(
 );
 
 // Authentication
-const initialAuthState = { isAuthenticated: false,user:null };
+const initialAuthState = { isAuthenticated: false, user: null };
 
 const authSlice = createSlice(
     {
@@ -57,9 +57,9 @@ const authSlice = createSlice(
         initialState: initialAuthState,
         reducers: {
             login(state, action) {
-                
 
-             
+
+
                 const userCred = action.payload;
                 state.user = userCred.username
                 axios.post('http://localhost:8080/authenticate', userCred)
@@ -67,17 +67,17 @@ const authSlice = createSlice(
                         console.log(response.data.jwt);
                         Cookies.set('user', response.data)
                         Cookies.set('role',"buyer")
+
                         axios.defaults.headers.common = {
                             'Authorization': 'Bearer ' + response.data.jwt
                         };
 
-                    }) 
+                    })
                     .catch(err => console.log(err.message))
 
                 if (Cookies.get('user') != null) {
                     state.isAuthenticated = true
                 }
-
 
             },
             logout(state) {

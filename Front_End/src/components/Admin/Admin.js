@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Reviews from "../Reviews/Reviews";
-import Sellers from "../Sellers/Sellers";
+import Reviews from '../../containers/Reviews/Reviews';
+
+
+import Sellers from "../../containers/Sellers/Sellers";
 
 // import './Seller.css';
 
