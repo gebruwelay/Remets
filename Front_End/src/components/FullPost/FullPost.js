@@ -56,10 +56,10 @@ const FullPost = (props) => {
                 
                 // let index = likedPosts.indexOf(parseInt(props.match.params.id))
                 console.log(props.match.params.id);
-                let result = p.filter(product => product.id != parseInt(props.match.params.id));
+                let result = p.filter(product =>parseInt(product.id) != parseInt(props.match.params.id));
                 setP(result);
+                alert("deleted the product!");
                 props.history.push('/products');
-                console.log("I am in products");
                 
 
                 // delete likedPosts[index]
