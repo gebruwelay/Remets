@@ -19,13 +19,9 @@ import javax.validation.constraints.NotEmpty;
 public class Review {
     @Id
     private long id;
-
-
     private String productReview;
-
     private boolean isApproved= false;
 
-    // @Valid
     @ManyToOne
     @JoinTable(name="product_Review")
     @JsonIgnore

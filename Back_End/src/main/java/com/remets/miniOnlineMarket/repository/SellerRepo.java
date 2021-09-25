@@ -10,5 +10,4 @@ import java.util.List;
 @Repository
 public interface SellerRepo extends CrudRepository<Seller, Long> {
     public List<Seller> findAll();
-   // public void save(long sellerId, Seller seller);
 }

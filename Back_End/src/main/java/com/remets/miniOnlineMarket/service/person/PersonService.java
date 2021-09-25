@@ -9,10 +9,7 @@ import java.util.Optional;
 
 public interface PersonService {
     public List<Person> getAll();
-
     public Optional<Person> getById(Long id);
-
     public void addPerson(Person person);
-
     public void deleteById(long id);
 }

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
 @CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/admins")
@@ -33,6 +32,11 @@ public class AdminController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable long id) {
         adminService.deleteById(id);
+    }
+
+    @GetMapping("/{id}/approve")
+    public void approveSeller(@PathVariable long id) {
+        adminService.approveSeller(id);
     }
 
 }

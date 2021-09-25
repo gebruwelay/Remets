@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping
 public class ReceiptController {
@@ -28,6 +28,7 @@ public class ReceiptController {
     public void deleteById(@PathVariable Long id) {
         receiptService.deleteById(id);
     }
+
     @PostMapping("/receipts")
     public void addReceipt(@RequestBody Receipt receipt) {
         receiptService.addReceipt(receipt);

@@ -17,6 +17,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     AdminRepo adminRepo;
+
     @Autowired
     SellerRepo sellerRepo;
 
@@ -35,11 +36,9 @@ public class AdminServiceImpl implements AdminService {
         return adminRepo.findById(id);
     }
 
-
     @Override
     public void deleteById(long id) {
         adminRepo.deleteById(id);
-
     }
 
     @Override

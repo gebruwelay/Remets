@@ -35,32 +35,32 @@ public class OrderServiceImpl implements OrderService{
         orderRepository.save(order);
 
     }
+
     @Override
-    public Order cancelOrder(long orderId){
+    public Order cancelOrder(long orderId) {
         Order order = orderRepository.findById(orderId).get();
         if(order.getOrderStatus()== OrderStatus.ORDERED) {
             order.setOrderStatus(OrderStatus.CANCELLED);
         }
-        orderRepository.save(order);
         return order;
     }
+
     @Override
-    public Order shipStatus(long orderId){
+    public Order changeStatus(long orderId){
         Order order = orderRepository.findById(orderId).get();
         if(order.getOrderStatus()== OrderStatus.ORDERED) {
+            order.setOrderStatus(OrderStatus.CANCELLED);
+        }
+        else if(order.getOrderStatus()== OrderStatus.ORDERED) {
             order.setOrderStatus(OrderStatus.SHIPPED);
         }
-        orderRepository.save(order);
-        return order;
-    }
-    @Override
-    public Order deliverStatus(long orderId){
-        Order order = orderRepository.findById(orderId).get();
-        if(order.getOrderStatus()== OrderStatus.SHIPPED) {
+        else  {
             order.setOrderStatus(OrderStatus.DELIVERED);
         }
+
         orderRepository.save(order);
         return order;
     }
+
 
 }

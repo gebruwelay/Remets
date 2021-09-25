@@ -14,6 +14,7 @@ public class ReceiptServiceImpl implements ReceiptService{
 
     @Autowired
     ReceiptRepository receiptRepository;
+
     @Override
     public Optional<Receipt> getById(Long id) {
         return receiptRepository.findById(id);

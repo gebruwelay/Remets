@@ -15,6 +15,5 @@ public interface OrderService {
     public void deleteById(Long id);
     public void addOrder(Order order);
     public Order cancelOrder(long orderId);
-    public Order shipStatus(long orderId);
-    public Order deliverStatus(long orderId);
+    public Order changeStatus(long orderId);
 }

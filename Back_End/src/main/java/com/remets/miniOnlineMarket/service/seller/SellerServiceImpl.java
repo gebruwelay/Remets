@@ -1,20 +1,24 @@
 package com.remets.miniOnlineMarket.service.seller;
 
+import com.remets.miniOnlineMarket.domain.Order;
 import com.remets.miniOnlineMarket.domain.Product;
 import com.remets.miniOnlineMarket.domain.Seller;
 import com.remets.miniOnlineMarket.repository.SellerRepo;
+import com.remets.miniOnlineMarket.service.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Id;
 import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
-
 @Service
 @Transactional
 public class SellerServiceImpl implements  SellerService{
     @Autowired
     SellerRepo sellerRepo;
+    @Autowired
+    OrderService orderService;
     @Override
     public List<Seller> getAll() {
         return sellerRepo.findAll();
@@ -27,12 +31,12 @@ public class SellerServiceImpl implements  SellerService{
 
     @Override
     public void addSeller(Seller seller) {
-sellerRepo.save(seller);
+        sellerRepo.save(seller);
     }
 
     @Override
     public void deleteById(long id) {
-sellerRepo.deleteById(id);
+        sellerRepo.deleteById(id);
     }
     @Override
     public void addProduct( long id,  Product product){
@@ -65,18 +69,23 @@ sellerRepo.deleteById(id);
 
     }
 
-//    @Override
-//    public void updateProduct(long sellerId, Product product) {
-//        Set<Product> products = getProducts(sellerId);
-//        Product product1 = products.stream()
-//                .filter(p->p.getProductId() == product.getProductId())
-//                .collect(Collectors.toList()).get(0);
-//        products.remove(product1);
-//        products.add(product);
-//
-//        Seller seller = getById(sellerId).get();
-//        seller.setProducts(products);
-//        sellerRepo.save(sellerId, seller);
-//    }
+    @Override
+    public Set<Order> getOrders(long sellerId) {
+        Seller seller = getById(sellerId).get();
+        return seller.getOrders();
+    }
+
+    @Override
+    public Product updateProduct(long sellerId, long productId) {
+        return null;
+    }
+
+
+    @Override
+    public Order changeStatus(long orderId, long sellerId){
+        return orderService.changeStatus(orderId);
+
+    }
+
 
 }

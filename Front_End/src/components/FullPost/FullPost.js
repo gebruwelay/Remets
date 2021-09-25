@@ -53,13 +53,14 @@ const FullPost = (props) => {
         //  http://localhost:8080/sellers/1/products/1
         axios.delete("http://localhost:8080/products/" + props.match.params.id)
             .then(response => {
+                
                 // let index = likedPosts.indexOf(parseInt(props.match.params.id))
+                console.log(props.match.params.id);
                 let result = p.filter(product => product.id != parseInt(props.match.params.id));
                 setP(result);
-                console.log(result);
-                console.log(props.match.params.id);
-
                 props.history.push('/products');
+                console.log("I am in products");
+                
 
                 // delete likedPosts[index]
                 //     props.history.push('/posts');
@@ -69,11 +70,11 @@ const FullPost = (props) => {
 
 
     const editProduct = () => {
-
+       let item = p.find(item=> item.id == parseInt(props.match.params.id));
         <div> {history.push(
             {
                 pathname: "/editproduct",
-                state: { id: p.id, name: p.name, quantity: p.quantity, price: p.price }
+                state: { id: parseInt(props.match.params.id), name: item.name, quantity: item.quantity, price: item.price, category:item.category}
             }
 
         )} </div>

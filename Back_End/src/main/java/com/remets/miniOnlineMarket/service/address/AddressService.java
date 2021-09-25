@@ -8,13 +8,9 @@ import java.util.Optional;
 
 public interface AddressService {
     public List<Address> getAll();
-
     public Optional<Address> getById(Long id);
-
     public void addAddress(Address address);
-
     public void deleteById(long id);
-
     public void updateAddress(Address address, long id);
 
 }

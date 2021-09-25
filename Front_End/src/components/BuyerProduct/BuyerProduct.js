@@ -37,7 +37,7 @@ const BuyerProduct = (props) => {
         "buyer_id": props.location.state.buyerId,
         "product_id": props.location.state.id
     }
-    axios.post("http://localhost:8080/carts/",data)
+    axios.post("http://localhost:8080/carts",data)
     .then(res=> {
             setCart([...cart,
                 {

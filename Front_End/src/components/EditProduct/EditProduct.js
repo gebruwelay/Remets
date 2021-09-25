@@ -32,7 +32,7 @@ const EditProduct = (props) => {
 
 
 
-        axios.put("/products/" + props.location.state.quantity, data)
+        axios.put("http://localhost:8080/products/" + props.location.state.id, data)
             .then(data => {
                 console.log('Success:', data);
                 props.history.push('/products'); // push will add it to the page stack, replace will just replace the component  // props.history.replace('/posts'); 
@@ -48,16 +48,16 @@ const EditProduct = (props) => {
             <form ref={newPostForm}>
                 <h1>Add Product</h1>
                 <label>Product Name</label>
-                <input type="text" name={'name'} value={props.location.state.name} />
+                <input type="text" name={'name'} defaultValue={props.location.state.name} />
 
                 <label>Price</label>
-                <input type="number" name={'price'} value={props.location.state.price} />
+                <input type="number" name={'price'} defaultValue={props.location.state.price} />
 
                 <label>Quantity</label>
-                <input type="number" name={'qty'} value={props.location.state.price} required />
+                <input type="number" name={'qty'} defaultValue={props.location.state.quantity} required />
 
                 <label>Category</label>
-                <input type="text" name={'category'} value={props.location.state.category} required />
+                <input type="text" name={'category'} defaultValue={props.location.state.category} required />
             </form>
             <button onClick={PostDataHandler}> Edit Product </button>
 

@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -16,16 +15,14 @@ import java.util.Set;
 @Data
 public class Seller extends Person{
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private long id;
-
     private boolean isApproved;
-    // @Valid
     @ManyToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER)
     @JoinTable(name="seller_products")
     @JsonIgnore
-    // private Set<@Valid Product> products;
     private Set<Product> products;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name="seller_order")
+    @JsonIgnore
+    private Set<Order> orders;
 }

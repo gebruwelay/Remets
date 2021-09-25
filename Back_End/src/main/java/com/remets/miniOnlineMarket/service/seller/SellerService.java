@@ -1,5 +1,6 @@
 package com.remets.miniOnlineMarket.service.seller;
 
+import com.remets.miniOnlineMarket.domain.Order;
 import com.remets.miniOnlineMarket.domain.Product;
 import com.remets.miniOnlineMarket.domain.Seller;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,9 @@ public interface SellerService {
 
     public void deleteProduct(long sellerId, long id);
 
-    // public void updateProduct(long sellerId, Product product);
+    public  Set<Order> getOrders(long sellerId);
+
+    public Product updateProduct(long sellerId, long productId);
+
+    public Order changeStatus(long orderId, long sellerId);
 }

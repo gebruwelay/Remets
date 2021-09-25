@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -39,17 +39,13 @@ public class ProductController {
 
     }
 
-//    @PutMapping("/{id}/")
-//    public void updateProduct(@RequestBody Product product, @PathVariable long id) {
-//        productService.updateProduct(product, id);
-//    }
-
     @GetMapping("/{productId}/reviews")
-    public List<Review> getReviewByProduct(long id){
+    public List<Review> getReviewByProduct(@PathVariable  long id){
         return productService.getReviewByProduct(id);
     }
 
-
-
-
+    @PutMapping("/{id}")
+    public void updateProduct(@RequestBody Product product, @PathVariable long id) {
+        productService.updateProduct(product, id);
+    }
 }

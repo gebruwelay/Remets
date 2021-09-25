@@ -21,7 +21,7 @@ public interface BuyerService {
 
     public Set<Seller> unFollowSeller(long buyerId, long sellerId);
 
-    public void placeOrder(long buyerId, long orderId);
+    Receipt placeOrder(long buyerId, long productId);
 
     public Set<Order> getOrdersByBuyerId(long buyerId);
 
@@ -31,13 +31,20 @@ public interface BuyerService {
 
     public List<Product> getAllProductsInCart(long buyerId);
 
-    public List<Product> clearCart(long buyerId);
+    public void clearCart(long buyerId);
 
     public void addReviewByBuyerId(long buyerId, Review review, long productId);
 
-    public Receipt processCart(long buyerId);
+    public Receipt processCart(long buyerId, long sellerId);
 
     public Set<Seller> getSellers(long buyerId);
 
     public void createCart(long buyerId);
+
+    public void cancelOrder( long buyerId, long orderId);
+
+    public Address changeBillingAddress(long buyerId, long orderId, Address address);
+
+    public Address changeShippingAddress(long buyerId, long orderId, Address address);
+
 }

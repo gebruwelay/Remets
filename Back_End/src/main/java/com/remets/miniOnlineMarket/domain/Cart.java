@@ -21,17 +21,12 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
-
-    // @Valid
     @OneToMany
     @JsonIgnore
-    // private List<@Valid Product> products;
     private List< Product> products;
-    // @Valid
-    @OneToOne(cascade = CascadeType.MERGE) //refer
-    private Buyer buyer;
 
+    @OneToOne(cascade = CascadeType.MERGE)
+    private Buyer buyer;
 
     public Cart(Buyer buyer) {
         this.buyer = buyer;

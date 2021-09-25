@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
 @CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/addresses")
@@ -38,11 +37,6 @@ public class AddressController {
         addressService.deleteById(id);
 
     }
-
-//    @PostMapping
-//    public void updateAddress(@RequestBody Address address, long id) {
-//        addressService.updateAddress(address, id);
-//    }
 }
 
 
